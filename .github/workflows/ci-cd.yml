@@ -1,0 +1,21 @@
+name: Deploy branding_sheets to GCP
+on:
+  push:
+    branches:
+      - main
+      - feat/test_gha
+
+jobs:
+  branding_sheets:
+    runs-on: 'ubuntu-latest'
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+    - uses: 'actions/checkout@v4'
+
+    - name: 'Run only when test folder changes'
+      run: | 
+        cat README.md
+      working-directory: test/
